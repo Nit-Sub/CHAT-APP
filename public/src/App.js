@@ -9,7 +9,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/register" element={<Register />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/" element={<Chat />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>

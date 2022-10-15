@@ -10,10 +10,25 @@ const userSchema = new mongoose.Schema({
 
     }, 
     email:{
-        type : string,
+        type : String,
         require: true,
         unique: true,
         max:50
 
+    },
+    password:{
+        type: String,
+        require: true,
+        min : 8 
+    },
+    isAvatarImageSet:{
+        type :Boolean,
+        default: false
+    },
+    avatarImage :{
+        type : String,
+        default: ""
     }
-})
+});
+
+module.exports = mongoose.model("Users", userSchema);

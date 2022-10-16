@@ -19,6 +19,12 @@ function Login() {
         draggable: true,
         theme: "dark",
     }
+    useEffect(()=>{
+        if(localStorage.getItem('chat-app-user')){
+            navigate("/")
+        }
+    },[navigate])
+
 
 
     const handleSubmit = async (event) => {
@@ -47,7 +53,7 @@ function Login() {
         if (password ==="") {
             toast.error("Password is compulsory", toastOptions);
             return false;
-        } else if (username.length ==="") {
+        } else if(username.length ==="") {
             toast.error("Email is compulsory", toastOptions);
             return false;
         }

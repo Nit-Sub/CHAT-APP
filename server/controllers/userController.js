@@ -3,70 +3,65 @@ const brcypt = require("bcrypt");
 
 
 module.exports.register = async (req, res, nect) => {
-    try{
+    try {
         const { username, password, email } = req.body;
-    const usernameCheck = await User.findOne({ username });
-    if (usernameCheck) {
-        return res.json({ 
-            msg: "Username already used",
-             status: false });
+        const usernameCheck = await User.findOne({ username });
+        if (usernameCheck) {
+            return res.json({
+                msg: "Username already used",
+                status: false
+            });
 
-    }
-    const emailCheck = await User.findOne({email});
-    if(emailCheck){
+        }
+        const emailCheck = await User.findOne({ email });
+        if (emailCheck) {
+            return res.json({
+                msg: "Email already used",
+                status: false
+            })
+        }
+        const hashedPassword = await brcypt.hash(password, 10);
+        const user = await User.create({
+            email,
+            username,
+            password: hashedPassword,
+        });
+        delete user.password;
         return res.json({
-            msg:"Email already used",
-             status : false
-        })
+            status: true, user
+        });
     }
-    const hashedPassword = await brcypt.hash(password, 10);
-    const user= await User.create({
-        email,
-        username,
-        password: hashedPassword,
-    });
-    delete user.password;
-    return res.json({
-        status: true , user
-    });
-    }
-    catch(error){
+    catch (error) {
         next(error);
 
-    }}
+    }
+}
 
-    
+
 module.exports.login = async (req, res, nect) => {
-    try{
-        const { username, password, email } = req.body;
-    const usernameCheck = await User.findOne({ username });
-    if (!user) {
-        return res.json({ 
-            msg: "Username already used",
-             status: false });
-
-    }
-    const emailCheck = await User.findOne({email});
-    if(emailCheck){
+    try {
+        const { username, password } = req.body;
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.json({
+                msg: "Incorrect Username ",
+                status: false
+            });
+        }
+        const isPasswordValid = await brcypt.compare(password, user.password)
+        if (!isPasswordValid) {
+            return res.json({
+                msg: "Incorrect Password",
+                status: false
+            })
+        }
+        delete user.password;
         return res.json({
-            msg:"Email already used",
-             status : false
-        })
+            status: true, user
+        });
     }
-    const hashedPassword = await brcypt.hash(password, 10);
-    const user= await User.create({
-        email,
-        username,
-        password: hashedPassword,
-    });
-    delete user.password;
-    return res.json({
-        status: true , user
-    });
-    }
-    catch(error){
+    catch (error) {
         next(error);
-
     }
 }
 

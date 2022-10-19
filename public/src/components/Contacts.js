@@ -49,19 +49,19 @@ export const Contacts = ({ contacts, currentUser }) => {
 
                             </div>
                             <div className="current-user">
-                            <div className="avatar">
-                            <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt="avatar" />
+                                <div className="avatar">
+                                    <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt="avatar" />
 
-                                                </div>
-                                                <div className="username" >
-                                                    <h2> {currentUserName}</h2>
-                                                </div>
-                            
-
+                                </div>
+                                <div className="username" >
+                                    <h2> {currentUserName}</h2>
                                 </div>
 
 
-                            
+                            </div>
+
+
+
                         </Container>
 
                     )

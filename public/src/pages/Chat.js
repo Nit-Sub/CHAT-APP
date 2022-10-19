@@ -38,6 +38,7 @@ const Chat = () => {
             <Container>
                 <div className="container">
                     <Contacts contacts={contacts} currentUser={currentUser}/>
+                   
                 </div>
 
 

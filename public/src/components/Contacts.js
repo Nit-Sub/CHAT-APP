@@ -27,18 +27,41 @@ export const Contacts = ({ contacts, currentUser }) => {
                             </div>
                             <div className="contacts">
                                 {
-                                    contacts.map((contact , index )=>{
-                                        return(
-                                            <div className="contact" key={index}>
+                                    contacts.map((contact, index) => {
+                                        return (
+                                            <div className={`contact ${index === currentSelected ? "selected" : ""}`}
+                                                key={index}>
+                                                <div className="avatar">
+                                                    <img src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt="avatar" />
 
                                                 </div>
+                                                <div className="usename" >
+                                                    <h3> {contact.username}</h3>
+                                                </div>
+
+
+                                            </div>
                                         )
 
                                     })
                                 }
-                                                                                                                                                                                                                                                                                                                                                                                             
+
 
                             </div>
+                            <div className="current-user">
+                            <div className="avatar">
+                            <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt="avatar" />
+
+                                                </div>
+                                                <div className="usename" >
+                                                    <h2> {currentUserName}</h2>
+                                                </div>
+                            
+
+                                </div>
+
+
+                            
                         </Container>
 
                     )
@@ -49,6 +72,7 @@ export const Contacts = ({ contacts, currentUser }) => {
 }
 
 const Container = styled.div`
-.brand{
-    color: white;
-}`;
+display:grid;
+grid-template-columns: 10% 75% 15%
+overflow: hidden;
+background-color:#080420 `;

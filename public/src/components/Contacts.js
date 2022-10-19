@@ -35,7 +35,7 @@ export const Contacts = ({ contacts, currentUser }) => {
                                                     <img src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt="avatar" />
 
                                                 </div>
-                                                <div className="usename" >
+                                                <div className="username" >
                                                     <h3> {contact.username}</h3>
                                                 </div>
 
@@ -53,7 +53,7 @@ export const Contacts = ({ contacts, currentUser }) => {
                             <img src={`data:image/svg+xml;base64,${currentUserImage}`} alt="avatar" />
 
                                                 </div>
-                                                <div className="usename" >
+                                                <div className="username" >
                                                     <h2> {currentUserName}</h2>
                                                 </div>
                             
@@ -75,4 +75,19 @@ const Container = styled.div`
 display:grid;
 grid-template-columns: 10% 75% 15%
 overflow: hidden;
-background-color:#080420 `;
+background-color:#080420 
+.brand{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    gap:1rem;
+    img{
+        height: 2rem;
+
+    }
+    h3{
+        color:white;
+        text-transfrom: uppercase;
+    }
+
+}`;

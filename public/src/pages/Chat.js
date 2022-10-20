@@ -15,6 +15,7 @@ const Chat = () => {
                 navigate("/login")
             }
             else {
+                
                 setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")))
             }
         };

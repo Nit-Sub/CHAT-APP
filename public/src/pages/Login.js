@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
@@ -10,7 +10,7 @@ function Login() {
     const navigate = useNavigate();
     const [values, setValues] = useState({
         username: "",
-        password: ""      
+        password: ""
     });
     const toastOptions = {
         position: "bottom-right",
@@ -19,11 +19,11 @@ function Login() {
         draggable: true,
         theme: "dark",
     }
-    useEffect(()=>{
-        if(localStorage.getItem('chat-app-user')){
+    useEffect(() => {
+        if (localStorage.getItem('chat-app-user')) {
             navigate("/")
         }
-    },[navigate])
+    }, [navigate])
 
 
 
@@ -31,7 +31,7 @@ function Login() {
         event.preventDefault();
         if (handleValidation()) {
             console.log("in validation", loginRoute)
-            const { password, username} = values;
+            const { password, username } = values;
             const { data } = await axios.post(loginRoute, {
                 username,
                 password
@@ -39,8 +39,8 @@ function Login() {
             if (data.status === false) {
                 toast.error(data.msg, toastOptions);
             }
-            if(data.status=== true ){
-                localStorage.setItem('chat-app-user',JSON.stringify(data.user));
+            if (data.status === true) {
+                localStorage.setItem('chat-app-user', JSON.stringify(data.user));
                 navigate("/")
 
             }
@@ -49,11 +49,11 @@ function Login() {
 
     };
     const handleValidation = () => {
-        const { password, username} = values;
-        if (password ==="") {
+        const { password, username } = values;
+        if (password === "") {
             toast.error("Password is compulsory", toastOptions);
             return false;
-        } else if(username.length ==="") {
+        } else if (username.length === "") {
             toast.error("Email is compulsory", toastOptions);
             return false;
         }
@@ -81,16 +81,16 @@ function Login() {
                         type="text"
                         placeholder="Username"
                         name="username"
-                        onChange={(event) => handleChange(event)} 
-                        min= "3"/>
-                   
+                        onChange={(event) => handleChange(event)}
+                        min="3" />
+
                     <input
                         type="password"
                         placeholder="Password"
                         name="password"
                         onChange={(event) => handleChange(event)}
-                        max= "8" />
-                    
+                        max="8" />
+
                     <button type="submit"> Login </button>
                     <span> Dont have an account ? <Link to="/register">Register  </Link></span>
 

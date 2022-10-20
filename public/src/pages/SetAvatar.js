@@ -21,30 +21,30 @@ export default function SetAvatar() {
         draggable: true,
         theme: "dark",
     }
-    useEffect (()=>{
-        if(!localStorage.getItem("chat-app-user")){
+    useEffect(() => {
+        if (!localStorage.getItem("chat-app-user")) {
             navigate("/login")
         }
-    },[navigate])
+    }, [navigate])
     const setProfilePicture = async () => {
-        if(selectedAvatar === undefined){
+        if (selectedAvatar === undefined) {
             toast.error("Please select an avatar ", toastOptions)
-        }else {
+        } else {
             const user = await JSON.parse(localStorage.getItem("chat-app-user"));
-            const {data} = await axios.post(`${setAvatarRoute}/${user._id}`,{
-            image:avatars[selectedAvatar],
-        });
-        if(data.isSet){
-            user.isAvatarImageSet= true ;
-            user.avatarImage = data.image;
-            localStorage.getItem("chat-app-user", JSON.stringify(user));
-            navigate("/")
+            const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
+                image: avatars[selectedAvatar],
+            });
+            if (data.isSet) {
+                user.isAvatarImageSet = true;
+                user.avatarImage = data.image;
+                localStorage.getItem("chat-app-user", JSON.stringify(user));
+                navigate("/")
+            }
+            else {
+                toast.error("Error setting avatar . Please try again", toastOptions)
+            }
+
         }
-        else {
-            toast.error("Error setting avatar . Please try again", toastOptions)
-        }
-    
-    }
 
 
 
@@ -63,8 +63,8 @@ export default function SetAvatar() {
             setIsLoading(false);
         };
         loadData();
-       
-      
+
+
     }, [])
 
     return (
@@ -72,30 +72,30 @@ export default function SetAvatar() {
         <>{
             isLoading ? <Container>
 
-                <img  src={Loader} alt="loader" className="loader"/>
+                <img src={Loader} alt="loader" className="loader" />
             </Container>
-            :(
-            <Container >
-                <div className="title-container">
-                    <h1>
-                        Pick an avatar as your profile picture
-                    </h1> </div>
-                <div className="avatars">
-                    {
-                        avatars.map((avatar, index) => {
-                            return (
-                                <div key={index} className={`avatar ${selectedAvatar === index ? "selected" : ""}`}>
-                                    <img src={`data:image/svg+xml;base64,${avatar}`} alt="avatar"
-                                        onClick={() => setSelectedAvatar(index)} />
+                : (
+                    <Container >
+                        <div className="title-container">
+                            <h1>
+                                Pick an avatar as your profile picture
+                            </h1> </div>
+                        <div className="avatars">
+                            {
+                                avatars.map((avatar, index) => {
+                                    return (
+                                        <div key={index} className={`avatar ${selectedAvatar === index ? "selected" : ""}`}>
+                                            <img src={`data:image/svg+xml;base64,${avatar}`} alt="avatar"
+                                                onClick={() => setSelectedAvatar(index)} />
 
-                                </div>
-                            )
+                                        </div>
+                                    )
 
-                        })
-                    }</div>
-                    <button className="submit-btn" onClick={setProfilePicture  }>Set as Profile Picture</button>
+                                })
+                            }</div>
+                        <button className="submit-btn" onClick={setProfilePicture}>Set as Profile Picture</button>
 
-            </Container>)}
+                    </Container>)}
             <ToastContainer />
         </>
     )

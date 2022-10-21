@@ -6,7 +6,7 @@ import Logo from "../assets/logo.svg";
 export const Contacts = ({ contacts, currentUser , changeChat }) => {
     const [currentUserName, setCurrentUserName] = useState(undefined);
     const [currentUserImage, setCurrentUserImage] = useState(undefined);
-    const [currentSelected, serCurrentSelected] = useState(undefined);
+    const [currentSelected, setCurrentSelected] = useState(undefined);
     useEffect(() => {
       
         if (currentUser) {
@@ -15,8 +15,8 @@ export const Contacts = ({ contacts, currentUser , changeChat }) => {
         }
     }, [currentUser])
     const changeCurrentChat = (index, contact) => { 
-        serCurrentSelected(index);
-        changeChat(contact)
+        setCurrentSelected(index);
+        changeChat(contact);
         
     }
 

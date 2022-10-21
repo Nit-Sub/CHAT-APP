@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"
 import { allUsersRoute } from "../utils/APIRoutes";
 import { Contacts } from "../components/Contacts";
+import { Welcome } from "../components/Welcome";
+import { ChatContainer } from "../components/ChatContainer";
 const Chat = () => {
     const [contacts, setContacts] = useState([]);
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -44,6 +46,14 @@ const Chat = () => {
             <Container>
                 <div className="container">
                     <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange}/>
+                  
+                   {
+                    currentChat=== undefined ? 
+                    <Welcome currentUser={currentUser}/>
+                    :
+                    <ChatContainer/>
+
+                   }
                    
                 </div>
 

@@ -9,7 +9,8 @@ import { ChatContainer } from "../components/ChatContainer";
 const Chat = () => {
     const [contacts, setContacts] = useState([]);
     const [currentUser, setCurrentUser] = useState(undefined);
-    const [currentChat , setCurrentChat] = useState(undefined);
+    const [currentChat, setCurrentChat] = useState(undefined);
+    const[isLoaded , setIsLoaded]=useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const loadData = async () => {
@@ -17,14 +18,15 @@ const Chat = () => {
                 navigate("/login")
             }
             else {
-                
-                setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")))
+
+                setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")));
+                setIsLoaded(true);
             }
         };
         loadData();
     }, [navigate])
     useEffect(() => {
-        const loadData = async() => {
+        const loadData = async () => {
             if (currentUser) {
                 if (currentUser.isAvatarImageSet) {
                     const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
@@ -36,8 +38,8 @@ const Chat = () => {
             }
         }
         loadData();
-    }, [currentUser,navigate])
-    const handleChatChange =(chat)=>{
+    }, [currentUser, navigate])
+    const handleChatChange = (chat) => {
         setCurrentChat(chat)
 
     }
@@ -45,16 +47,14 @@ const Chat = () => {
         <>
             <Container>
                 <div className="container">
-                    <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange}/>
-                  
-                   {
-                    currentChat=== undefined ? 
-                    <Welcome currentUser={currentUser}/>
-                    :
-                    <ChatContainer/>
+                    <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
 
-                   }
-                   
+                    {
+                        currentChat === undefined &&(isLoaded)?
+                            <Welcome currentUser={currentUser} />
+                            :
+                            <ChatContainer  currentChat={currentChat}/>}
+
                 </div>
 
 

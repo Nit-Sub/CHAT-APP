@@ -3,21 +3,21 @@ import styled from "styled-components";
 import Logo from "../assets/logo.svg";
 
 
-export const Contacts = ({ contacts, currentUser , changeChat }) => {
+export const Contacts = ({ contacts, currentUser, changeChat }) => {
     const [currentUserName, setCurrentUserName] = useState(undefined);
     const [currentUserImage, setCurrentUserImage] = useState(undefined);
     const [currentSelected, setCurrentSelected] = useState(undefined);
     useEffect(() => {
-      
+
         if (currentUser) {
             setCurrentUserImage(currentUser.avatarImage);
             setCurrentUserName(currentUser.username);
         }
     }, [currentUser])
-    const changeCurrentChat = (index, contact) => { 
+    const changeCurrentChat = (index, contact) => {
         setCurrentSelected(index);
         changeChat(contact);
-        
+
     }
 
     return (<>
@@ -36,7 +36,7 @@ export const Contacts = ({ contacts, currentUser , changeChat }) => {
                                 contacts.map((contact, index) => {
                                     return (
                                         <div className={`contact ${index === currentSelected ? "selected" : ""}`}
-                                            key={index} onClick={()=>changeCurrentChat(index,contact)}>
+                                            key={index} onClick={() => changeCurrentChat(index, contact)}>
                                             <div className="avatar">
                                                 <img src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt="avatar" />
 
@@ -51,7 +51,7 @@ export const Contacts = ({ contacts, currentUser , changeChat }) => {
 
                                 })
                             }
-                           
+
 
 
                         </div>
@@ -63,7 +63,7 @@ export const Contacts = ({ contacts, currentUser , changeChat }) => {
                             <div className="username" >
                                 <h2> {currentUserName}</h2>
                             </div>
- 
+
 
                         </div>
 

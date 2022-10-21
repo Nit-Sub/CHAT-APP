@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Robot from "../assets/robot.gif";
-export const Welcome = ({currentUser}) => {
-   
-    return (
-       <>
+export const Welcome = ({ currentUser }) => {
 
-        <Container>
-        <img src={Robot} alt="Robot" />
-            <h1>
-                Welcome, <span>{currentUser.username}!</span>
-            </h1>
-            <h3> 
-                Please select a chat to Start Messaging
-            </h3>
-            
-        </Container>
-        
-</>
+    return (
+        <>
+
+            <Container>
+                <img src={Robot} alt="Robot" />
+                <h1>
+                    Welcome, <span>{currentUser.username}!</span>
+                </h1>
+                <h3>
+                    Please select a chat to Start Messaging
+                </h3>
+
+            </Container>
+
+        </>
     )
 }
 

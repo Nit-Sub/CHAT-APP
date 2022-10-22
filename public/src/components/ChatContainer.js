@@ -2,43 +2,44 @@ import React from "react";
 import styled from "styled-components";
 import { ChatInput } from "./ChatInput";
 import { Logout } from "./Logout";
+import { Messages } from "./Messages";
 
-export const ChatContainer = ({currentChat}) => {
-    const handleSendMsg=async(msg)=>{
+export const ChatContainer = ({ currentChat }) => {
+    const handleSendMsg = async (msg) => {
 
     }
- 
+
     return (<>
 
-    {
-        currentChat &&(<Container>
-            <div className="chat-header">
-                <div className="user-details">
-                    <div className="avatar">
-                    <img src={`data:image/svg+xml;base64,${currentChat
-                .avatarImage}`}
-                     alt="avatar" />
+        {
+            currentChat && (<Container>
+                <div className="chat-header">
+                    <div className="user-details">
+                        <div className="avatar">
+                            <img src={`data:image/svg+xml;base64,${currentChat
+                                .avatarImage}`}
+                                alt="avatar" />
+                        </div>
+                        <div className="username">
+                            <h3>{currentChat
+                                .username}</h3>
+                        </div>
                     </div>
-                    <div className="username">
-            <h3>{currentChat
-        .username}</h3>
-                    </div>
+                    <Logout />
                 </div>
-                <Logout/>
-            </div>
-            <div className="chat-messages">
-    
-            </div>
-          <ChatInput handleSendMsg={handleSendMsg}/>
+             
+
+                <Messages/>
+                <ChatInput handleSendMsg={handleSendMsg} />
 
             </Container>
-            
-        )
-    }
-        </>
+
+            )
+        }
+    </>
     )
 }
-const Container =styled.div`
+const Container = styled.div`
 padding-top : 1rem;
 .chat-header{
     display:flex;

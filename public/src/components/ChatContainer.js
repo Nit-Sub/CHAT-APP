@@ -6,6 +6,7 @@ import { Messages } from "./Messages";
 
 export const ChatContainer = ({ currentChat }) => {
     const handleSendMsg = async (msg) => {
+       
 
     }
 

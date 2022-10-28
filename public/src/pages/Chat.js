@@ -10,7 +10,7 @@ const Chat = () => {
     const [contacts, setContacts] = useState([]);
     const [currentUser, setCurrentUser] = useState(undefined);
     const [currentChat, setCurrentChat] = useState(undefined);
-    const[isLoaded , setIsLoaded]=useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const loadData = async () => {
@@ -50,10 +50,10 @@ const Chat = () => {
                     <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
 
                     {
-                        currentChat === undefined &&(isLoaded)?
+                        currentChat === undefined && (isLoaded) ?
                             <Welcome currentUser={currentUser} />
                             :
-                            <ChatContainer  currentChat={currentChat} currentUser={currentUser}/>}
+                            <ChatContainer currentChat={currentChat} currentUser={currentUser} />}
 
                 </div>
 

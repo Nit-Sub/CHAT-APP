@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import { WelcomeContainer } from "../styles/styled.components";
 import Robot from "../assets/robot.gif";
 export const Welcome = ({ currentUser }) => {
 
     return (
         <>
 
-            <Container>
+            <WelcomeContainer>
                 <img src={Robot} alt="Robot" />
                 <h1>
                     Welcome, <span>{currentUser.username}!</span>
@@ -15,24 +15,8 @@ export const Welcome = ({ currentUser }) => {
                     Please select a chat to Start Messaging
                 </h3>
 
-            </Container>
+            </WelcomeContainer>
 
         </>
     )
 }
-
-const Container = styled.div`
-display:flex;
-justify-content:center;
-align-items: center;
-flex-direction: column;
-color:white;
-img{
-    height: 20rem;
-}
-span{
-    color:#4e00ff;
-
-}
-
-`;

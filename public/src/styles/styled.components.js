@@ -291,9 +291,8 @@ svg{
 `;
 
 export const MessagesContainer = styled.div`
-height: 80%;
+height: 80%;`
 
-`
 export const WelcomeContainer = styled.div`
 display:flex;
 justify-content:center;

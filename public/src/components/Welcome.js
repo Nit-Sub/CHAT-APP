@@ -4,7 +4,7 @@ import Robot from "../assets/robot.gif";
 export const Welcome = ({ currentUser }) => {
 
     return (
-        
+            
         <>
 
             <Container>

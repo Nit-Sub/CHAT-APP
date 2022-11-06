@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
@@ -37,20 +37,23 @@ const Chat = () => {
         }
 
     },[currentUser])
-    useEffect(() => {
-        const loadData = async () => {
-            if (currentUser) {
-                if (currentUser.isAvatarImageSet) {
-                    const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
-                    setContacts(data.data);
-                } else {
-                    navigate("/setAvatar");
-                }
 
+    const loadData = useCallback(async () => {
+        if (currentUser) {
+            if (currentUser.isAvatarImageSet) {
+                const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
+                setContacts(data.data);
+            } else {
+                navigate("/setAvatar");
             }
+
         }
-        loadData();
     }, [currentUser, navigate])
+    useEffect(() => {
+        loadData();
+    }, [loadData])
+
+
     const handleChatChange = (chat) => {
         setCurrentChat(chat)
 

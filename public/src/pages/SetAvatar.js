@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Loader from "../assets/loader.gif"
@@ -9,7 +9,7 @@ import { setAvatarRoute } from "../utils/APIRoutes";
 import { Buffer } from "buffer";
 
 export default function SetAvatar() {
-    const api = "https://api.multiavatar.com/45678945";
+    const api = "https://avatar-endpoint.herokuapp.com/api";
     const navigate = useNavigate();
     const [avatars, setAvatars] = useState([]);
     const [isLoading, setIsLoading] = useState(true);

@@ -39,7 +39,7 @@ export default function SetAvatar() {
     //             user.isAvatarImageSet = true;
     //             user.avatarImage = data.image;
               
-    //             localStorage.getItem("chat-app-user", JSON.stringify(user));
+    //             localStorage.getItem("chat-app-user", JSON.stringify(user));/// setitem error
     //             navigate("/")
             
     //         }
@@ -81,7 +81,7 @@ export default function SetAvatar() {
     useEffect(() => {
         const loadData = async () => {
             const data = [];
-            for (let i = 0; i < 1; i++) {
+            for (let i = 0; i < 4; i++) {
                 const image = await axios.get(
                     `${api}/${Math.round(Math.random() * 1000)}`
                 );
@@ -113,7 +113,7 @@ export default function SetAvatar() {
                             {
                                 avatars.map((avatar, index) => {
                                     return (
-                                        <div className={`avatar ${selectedAvatar === index ? "selected" : ""}`}>
+                                        <div key={index}className={`avatar ${selectedAvatar === index ? "selected" : ""}`}>
                                             <img src={`data:image/svg+xml;base64,${avatar}`} alt="avatar"
                                                 onClick={() => setSelectedAvatar(index)} />
 

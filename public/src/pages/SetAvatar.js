@@ -26,32 +26,7 @@ export default function SetAvatar() {
             navigate("/login")
         }
     }, [])
-    // const setProfilePicture = async () => {
-    //     if (selectedAvatar === undefined) {
-    //         toast.error("Please select an avatar ", toastOptions)
-    //     } else {
-    //         const user = await JSON.parse(localStorage.getItem("chat-app-user"));
-    //         const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
-    //             image: avatars[selectedAvatar],
-    //         });
-          
-    //         if (data.isSet) {
-    //             user.isAvatarImageSet = true;
-    //             user.avatarImage = data.image;
-              
-    //             localStorage.getItem("chat-app-user", JSON.stringify(user));/// setitem error
-    //             navigate("/")
-            
-    //         }
-    //         else {
-    //             toast.error("Error setting avatar . Please try again", toastOptions)
-    //         }
-
-    //     }
-
-
-
-    // };
+   
 
     const setProfilePicture = async () => {
       if (selectedAvatar === undefined) {
